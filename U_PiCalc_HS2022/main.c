@@ -1,8 +1,8 @@
 /*
  * U_PiCalc_HS2022.c
  *
- * Created: 20.03.2018 18:32:07
- * Author : -
+ * Created: 04.10.2022 21:00:00
+ * Author : Balaram Ramalingam
  */ 
 
 #include <math.h>
@@ -33,12 +33,15 @@
 
 void controllerTask(void* pvParameters);
 
+
 int main(void)
 {
 	vInitClock();
 	vInitDisplay();
 	
+	
 	xTaskCreate( controllerTask, (const char *) "control_tsk", configMINIMAL_STACK_SIZE+150, NULL, 3, NULL);
+	xTaskCreate (leibniztask, (const char *) "control_tsk", configMINIMAL_STACK_SIZE+150, NULL, 1, NULL);
 
 	vDisplayClear();
 	vDisplayWriteStringAtPos(0,0,"PI-Calc HS2022");
@@ -79,4 +82,13 @@ void controllerTask(void* pvParameters) {
 		}
 		vTaskDelay(10/portTICK_RATE_MS);
 	}
+}
+
+void leibniztask (void* pvParameters){
+	float piviertel = 1;
+	unit32_t n = 3;
+	for(;;)
+	
+	piviertel = piviertel - 1/n 
+		
 }
